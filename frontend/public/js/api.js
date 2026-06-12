@@ -1,5 +1,5 @@
 // Central API client — all fetch calls go through here
-const API_URL = window.ENV_API_URL || 'http://localhost:5000';
+const API_URL = window.ENV_API_URL || 'https://roots-wings-api.onrender.com';
 
 const getToken = () => localStorage.getItem('rw_token');
 
