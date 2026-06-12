@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join the network — Roots & Wings</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<script>window.ENV_API_URL = "http://localhost:5000";</script>
+</head>
+<body>
+<div class="s-auth">
+  <div class="auth-wrap">
+    <div class="logo-row">
+      <div class="lm"><i class="ti ti-leaf"></i></div>
+      <span class="logo-text">Roots & Wings</span>
+    </div>
+    <div class="auth-card">
+      <button class="back-link" onclick="history.back()">
+        <i class="ti ti-arrow-left" style="font-size:15px"></i> Back to sign in
+      </button>
+      <h2>Join the network</h2>
+      <p class="sub">Alumni registration — connect, mentor, and inspire</p>
+
+      <div id="signup-error" class="err-box"></div>
+      <div id="signup-ok" class="ok-box"></div>
+
+      <form id="signup-form">
+        <div class="field">
+          <label>Full name</label>
+          <input type="text" id="name" placeholder="Your full name" required>
+        </div>
+        <div class="field">
+          <label>Email address</label>
+          <input type="email" id="email" placeholder="you@example.com" required>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="field">
+            <label>Graduation year</label>
+            <select id="year" required>
+              <option value="">Select year</option>
+              <option>2024</option><option>2023</option><option>2022</option>
+              <option>2021</option><option>2020</option><option>2019</option>
+              <option>2018</option><option>2017</option><option>2016</option>
+              <option>2015</option><option>2014</option><option>2013</option>
+              <option>2012</option><option>2011</option><option>2010</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Field / profession</label>
+            <select id="field" required>
+              <option value="">Select field</option>
+              <option>Technology</option><option>Healthcare</option>
+              <option>Education</option><option>Business</option>
+              <option>Arts</option><option>Law</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Current role / title</label>
+          <input type="text" id="currentRole" placeholder="e.g. Software Engineer, TCS" required>
+        </div>
+        <div class="field">
+          <label>Open to mentoring current residents?</label>
+          <select id="mentor">
+            <option value="true">Yes, I'd love to mentor</option>
+            <option value="false">Not right now</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <div class="pw-wrap">
+            <input type="password" id="password" placeholder="Min. 8 characters" required>
+            <button type="button" class="pw-eye"><i class="ti ti-eye"></i></button>
+          </div>
+          <p class="hint">8+ characters with at least one number</p>
+        </div>
+        <button type="submit" id="signup-btn" class="btn-main">Create account</button>
+      </form>
+
+      <div class="sw" style="margin-top:16px">
+        Already registered? <a href="/login.html">Sign in</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap"><div id="toast-el" class="toast"></div></div>
+<script src="/js/api.js"></script>
+<script src="/js/components.js"></script>
+<script src="/js/auth.js"></script>
+</body>
+</html>

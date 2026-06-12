@@ -1,0 +1,12 @@
+{
+  "name": "roots-wings-frontend",
+  "version": "1.0.0",
+  "description": "Roots & Wings Alumni Portal — Frontend",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "npx serve public -p 3000"
+  },
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}

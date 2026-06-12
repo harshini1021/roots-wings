@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roots & Wings — Alumni Portal</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<script>window.ENV_API_URL = "http://localhost:5000";</script>
+</head>
+<body>
+<div class="s-portal">
+
+  <!-- NAV -->
+  <nav class="pnav">
+    <div class="pnav-logo">
+      <div class="lm"><i class="ti ti-leaf"></i></div>
+      <span>Roots & Wings</span>
+    </div>
+    <div class="pnav-tabs">
+      <button class="ptab active" data-panel="p-home">Home</button>
+      <button class="ptab" data-panel="p-alumni">Alumni</button>
+      <button class="ptab" data-panel="p-jobs">Jobs</button>
+      <button class="ptab" data-panel="p-mentors">Mentorship</button>
+      <button class="ptab" data-panel="p-stories">Stories</button>
+    </div>
+    <div class="pnav-user">
+      <div id="p-uav"></div>
+      <div>
+        <div class="u-name" id="p-uname"></div>
+        <div class="u-role" id="p-urole"></div>
+      </div>
+      <button class="signout-btn" id="signout-btn">
+        <i class="ti ti-logout"></i> Sign out
+      </button>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="pcontent">
+
+    <!-- HOME -->
+    <div id="p-home" class="ppanel active">
+      <div class="hero-block">
+        <div>
+          <h1>Your roots gave you <em>wings</em> to fly</h1>
+          <p>Connecting alumni, current residents, and mentors — because everyone deserves a community that grows with them.</p>
+          <div class="hbtns">
+            <button class="btn-p" onclick="Portal.openPostJobModal()">Post a job</button>
+            <button class="btn-o" onclick="document.querySelector('[data-panel=p-stories]').click()">Read stories</button>
+          </div>
+        </div>
+        <div class="stats-2x2">
+          <div class="s-card"><div class="n" id="stat-alumni">—</div><div class="l">Alumni registered</div></div>
+          <div class="s-card"><div class="n" id="stat-mentors">—</div><div class="l">Active mentors</div></div>
+          <div class="s-card"><div class="n" id="stat-jobs">—</div><div class="l">Job openings</div></div>
+          <div class="s-card"><div class="n" id="stat-stories">—</div><div class="l">Success stories</div></div>
+        </div>
+      </div>
+
+      <div class="notice-bar">
+        <h3><i class="ti ti-speakerphone" style="vertical-align:-2px;margin-right:7px"></i>Community board</h3>
+        <div class="nitem"><i class="ti ti-calendar-event"></i><span>Annual alumni reunion — July 14, 2025 at the main campus</span><span class="ntag">EVENT</span></div>
+        <div class="nitem"><i class="ti ti-briefcase"></i><span>Alumni are posting jobs — check the Jobs tab for opportunities</span><span class="ntag">JOB</span></div>
+        <div class="nitem"><i class="ti ti-school"></i><span>Scholarship applications open for current residents — deadline Aug 1</span><span class="ntag">NOTICE</span></div>
+      </div>
+
+      <div style="margin-bottom:20px">
+        <div class="sec-hd">
+          <h2>Recent alumni</h2>
+          <a onclick="document.querySelector('[data-panel=p-alumni]').click()">See all →</a>
+        </div>
+        <div class="g3" id="h-alumni">
+          <div class="loading-state"><i class="ti ti-loader-2"></i>Loading alumni...</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-hd">
+          <h2>Latest opportunities</h2>
+          <a onclick="document.querySelector('[data-panel=p-jobs]').click()">See all →</a>
+        </div>
+        <div id="h-jobs">
+          <div class="loading-state"><i class="ti ti-loader-2"></i>Loading jobs...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALUMNI -->
+    <div id="p-alumni" class="ppanel">
+      <div class="sec-hd" style="margin-bottom:14px">
+        <h2>Alumni network</h2>
+        <span id="alumni-count" style="font-size:12px;color:var(--muted)"></span>
+      </div>
+      <div class="search-row">
+        <input type="text" id="alumni-search" placeholder="Search alumni by name or role...">
+        <select id="alumni-field">
+          <option value="">All fields</option>
+          <option>Technology</option><option>Healthcare</option>
+          <option>Education</option><option>Business</option>
+          <option>Arts</option><option>Law</option>
+        </select>
+      </div>
+      <div class="g3" id="all-alumni">
+        <div class="loading-state"><i class="ti ti-loader-2"></i>Loading...</div>
+      </div>
+    </div>
+
+    <!-- JOBS -->
+    <div id="p-jobs" class="ppanel">
+      <div class="sec-hd" style="margin-bottom:14px">
+        <h2>Job opportunities</h2>
+        <button class="btn-p" onclick="Portal.openPostJobModal()" style="font-size:13px;padding:8px 16px">
+          <i class="ti ti-plus" style="vertical-align:-2px;margin-right:5px"></i>Post a job
+        </button>
+      </div>
+      <div id="all-jobs">
+        <div class="loading-state"><i class="ti ti-loader-2"></i>Loading...</div>
+      </div>
+    </div>
+
+    <!-- MENTORS -->
+    <div id="p-mentors" class="ppanel">
+      <div class="sec-hd" style="margin-bottom:14px">
+        <h2>Mentorship</h2>
+        <span style="font-size:12px;color:var(--muted)">Alumni guiding the next generation</span>
+      </div>
+      <div class="g3" id="all-mentors">
+        <div class="loading-state"><i class="ti ti-loader-2"></i>Loading...</div>
+      </div>
+    </div>
+
+    <!-- STORIES -->
+    <div id="p-stories" class="ppanel">
+      <div class="sec-hd" style="margin-bottom:14px">
+        <h2>Success stories</h2>
+        <button class="btn-p" onclick="Portal.openShareStoryModal()" style="font-size:13px;padding:8px 16px">
+          <i class="ti ti-pencil" style="vertical-align:-2px;margin-right:5px"></i>Share yours
+        </button>
+      </div>
+      <div class="g2" id="all-stories">
+        <div class="loading-state"><i class="ti ti-loader-2"></i>Loading...</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box" id="modal-box"></div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-wrap"><div id="toast-el" class="toast"></div></div>
+
+<script src="/js/api.js"></script>
+<script src="/js/components.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/portal.js"></script>
+</body>
+</html>
