@@ -21,7 +21,7 @@ const register = async (req, res) => {
 
     await query('INSERT INTO users (id,name,email,password_hash,role) VALUES ($1,$2,$3,$4,$5)',
       [userId, name, email, passwordHash, 'ALUMNI']);
-    await query('INSERT INTO alumni (id,user_id,year,field,current_role,mentor,status) VALUES ($1,$2,$3,$4,$5,$6,$7)',
+    await query('INSERT INTO alumni (id,user_id,year,field,job_role,mentor,status) VALUES ($1,$2,$3,$4,$5,$6,$7)',
       [alumniId, userId, year, field, currentRole, isMentor, 'PENDING']);
     await query('INSERT INTO activity_log (id,action,performed_by) VALUES ($1,$2,$3)',
       [uuid(), `${name} submitted an alumni registration`, userId]);

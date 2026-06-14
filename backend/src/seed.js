@@ -28,7 +28,7 @@ async function seed() {
       await query('INSERT INTO users (id,name,email,password_hash,role) VALUES ($1,$2,$3,$4,$5)',
         [uid, d.name, d.email, hash(d.pw), d.role]);
       if (d.role === 'ALUMNI') {
-        await query('INSERT INTO alumni (id,user_id,year,field,current_role,bio,mentor,status) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)',
+        await query('INSERT INTO alumni (id,user_id,year,field,job_role,bio,mentor,status) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)',
           [uuid(), uid, d.year, d.field, d.roleTitle, 'Demo alumni account.', false, 'APPROVED']);
       }
       console.log(`✅ Demo: ${d.email} / ${d.pw}`);
@@ -55,7 +55,7 @@ async function seed() {
     const uid = uuid(); const aid = uuid();
     await query('INSERT INTO users (id,name,email,password_hash,role) VALUES ($1,$2,$3,$4,$5)',
       [uid, a.name, a.email, hash(a.pw), 'ALUMNI']);
-    await query('INSERT INTO alumni (id,user_id,year,field,current_role,bio,mentor,status) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)',
+    await query('INSERT INTO alumni (id,user_id,year,field,job_role,bio,mentor,status) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)',
       [aid, uid, a.year, a.field, a.role, a.bio, a.mentor, 'APPROVED']);
     userIds[a.email] = uid; alumniIds[a.email] = aid;
     console.log(`✅ ${a.name}`);

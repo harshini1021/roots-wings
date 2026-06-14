@@ -35,7 +35,7 @@ const getRegistrations = async (req, res) => {
     const result = await query(sql, params);
     const alumni = result.rows.map(r => ({
       id: r.id, year: r.year, field: r.field,
-      currentRole: r.current_role, mentor: r.mentor,
+      currentRole: r.job_role, mentor: r.mentor,
       status: r.status, createdAt: r.created_at,
       user: { name: r.name, email: r.email },
     }));

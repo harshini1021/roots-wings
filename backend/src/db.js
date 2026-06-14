@@ -27,7 +27,7 @@ const initDb = async () => {
       user_id      TEXT NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
       year         TEXT NOT NULL,
       field        TEXT NOT NULL,
-      current_role TEXT NOT NULL,
+      job_role      TEXT NOT NULL,
       bio          TEXT,
       mentor       BOOLEAN NOT NULL DEFAULT FALSE,
       status       TEXT NOT NULL DEFAULT 'PENDING',

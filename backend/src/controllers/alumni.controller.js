@@ -8,13 +8,13 @@ const getAll = async (req, res) => {
     let i = 2;
     if (field)  { sql += ` AND a.field = $${i++}`; params.push(field); }
     if (mentor === 'true') { sql += ` AND a.mentor = TRUE`; }
-    if (search) { sql += ` AND (u.name ILIKE $${i} OR a.current_role ILIKE $${i})`; params.push(`%${search}%`); i++; }
+    if (search) { sql += ` AND (u.name ILIKE $${i} OR a.job_role ILIKE $${i})`; params.push(`%${search}%`); i++; }
     sql += ' ORDER BY a.created_at DESC';
 
     const result = await query(sql, params);
     const alumni = result.rows.map(r => ({
       id: r.id, year: r.year, field: r.field,
-      currentRole: r.current_role, bio: r.bio,
+      currentRole: r.job_role, bio: r.bio,
       mentor: r.mentor, status: r.status, createdAt: r.created_at,
       user: { id: r.user_id, name: r.name, email: r.email },
     }));
@@ -54,7 +54,7 @@ const getOne = async (req, res) => {
     if (!r) return res.status(404).json({ error: 'Alumni not found' });
     res.json({ alumni: {
       id: r.id, year: r.year, field: r.field,
-      currentRole: r.current_role, bio: r.bio,
+      currentRole: r.job_role, bio: r.bio,
       mentor: r.mentor, status: r.status,
       user: { id: r.user_id, name: r.name, email: r.email },
     }});
